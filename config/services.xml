@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container
+        xmlns="http://symfony.com/schema/dic/services"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="files_directory">%kernel.project_dir%/public/uploads/images</parameter>
+    </parameters>
+
+    <services>
+        <defaults autowire="true" autoconfigure="true" public="true" />
+
+        <service id="app.controller.main_page_controller" class="App\Controller\MainPageController" public="true">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="app.uploader.image_uploader" />
+            <tag name="container.service_subscriber"/>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <service id="app.controller.show_data_controller" class="App\Controller\ShowDataController" public="true">
+
+            <tag name="controller.service_arguments"/>
+            <tag name="container.service_subscriber"/>
+        </service>
+
+        <service id="app.controller.register" class="App\Controller\RegistrationController" public="true">
+            <tag name="controller.service_arguments"/>
+            <tag name="container.service_subscriber"/>
+        </service>
+
+        <service id="app.controller.login" class="App\Controller\LoginController" public="true">
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <service id="app.uploader.image_uploader" class="App\Uploader\ImageUploader">
+            <argument>%files_directory%</argument>
+            <argument type="service" id="slugger" />
+        </service>
+    </services>
+</container>

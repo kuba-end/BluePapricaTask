@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Login{% endblock %}
+
+{% block content %}
+    {% if error %}
+        <div class="bg-white p-8 rounded-xl shadow">
+            <div class="m-auto space-y-6">
+                <div class="flex gap-4 bg-red-100 p-4 rounded-md">
+                    <div class="w-max">
+                        <div class="h-10 w-10 flex rounded-full bg-gradient-to-b from-red-100 to-red-300 text-red-700">
+                            <span class="material-icons material-icons-outlined m-auto"
+                                  style="font-size:20px">gpp_bad</span>
+                        </div>
+                    </div>
+                    <div class="space-y-1 text-sm">
+                        <h6 class="font-medium text-red-900">Fatal error</h6>
+                        <p class="text-red-700 leading-tight">{{ error.messageKey | trans(error.messageData,'security') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="h-screen ">
+        <div class="flex justify-center py-10 items-center bg-white">
+            <form class="bg-white" method="post">
+                <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
+                <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
+                <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
+                         viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"/>
+                    </svg>
+                    <input class="pl-2 outline-none border-none" id="username" type="email" name="_username"
+                           placeholder="Email Address" value="{{ last_username }}"/>
+                </div>
+                <div class="flex items-center border-2 py-2 px-3 rounded-2xl">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                    <input class="pl-2 outline-none border-none" id="password" type="password" name="_password"
+                           placeholder="Password"/>
+                </div>
+                <input type="hidden" name="_target_path" value="referer"/>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <button type="submit"
+                        class="block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Login
+                </button>
+                <a href="{{ path('app_register') }}" class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Don't
+                    have account yet? Register now</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
