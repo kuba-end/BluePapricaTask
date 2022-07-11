@@ -16,8 +16,8 @@ final class ShowDataController extends AbstractController
         $signatureRepository = $doctrine->getRepository(Signature::class);
         $signatures = $signatureRepository->findAll();
 
-        return $this->render('dataPage.html.twig',[
-            'signatures' => $signatures
+        return $this->render('dataPage.html.twig', [
+            'signatures' => $signatures,
         ]);
     }
 }

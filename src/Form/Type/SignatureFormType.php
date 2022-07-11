@@ -23,20 +23,20 @@ final class SignatureFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Please enter a password',
                     ]),
-                ]])->add('surname', TextType::class, [
+                ], ])->add('surname', TextType::class, [
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
                     ]),
-                ]])
+                ], ])
             ->add('attachment', FileType::class, [
                 'required' => false,
                 'constraints' => [
                     new Image([
                         'maxSize' => '2048k',
-                        'mimeTypesMessage' => 'Please upload a valid image'
+                        'mimeTypesMessage' => 'Please upload a valid image',
                     ]),
-                ]
+                ],
             ]);
     }
 
@@ -44,7 +44,6 @@ final class SignatureFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Signature::class,
-
         ]);
     }
 }

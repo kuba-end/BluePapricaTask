@@ -7,6 +7,7 @@ namespace App\Message;
 final class SignatureMessage
 {
     private $id;
+
     private $context;
 
     public function __construct(int $id, array $context = [])

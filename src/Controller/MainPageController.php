@@ -7,12 +7,12 @@ namespace App\Controller;
 use App\Entity\Signature;
 use App\Form\Type\SignatureFormType;
 use App\Message\SignatureMessage;
+use App\Uploader\ImageUploaderInterface;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Uploader\ImageUploaderInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 final class MainPageController extends AbstractController
@@ -27,8 +27,7 @@ final class MainPageController extends AbstractController
         EntityManagerInterface $entityManager,
         ImageUploaderInterface $fileUploader,
         MessageBusInterface $bus
-    )
-    {
+    ) {
         $this->entityManager = $entityManager;
         $this->fileUploader = $fileUploader;
         $this->bus = $bus;
@@ -38,7 +37,6 @@ final class MainPageController extends AbstractController
     {
         $signature = new Signature();
         $form = $this->createForm(SignatureFormType::class, $signature);
-
         $form->handleRequest($request);
         $context = [
             'user_ip' => $request->getClientIp(),

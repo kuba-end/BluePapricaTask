@@ -13,9 +13,10 @@ final class SignatureMessageHandler implements MessageHandlerInterface
 
     public function __construct(
         EntityManagerInterface $entityManager
-    ){
+    ) {
         $this->entityManager = $entityManager;
     }
+
     public function __invoke()
     {
         $this->entityManager->flush();
