@@ -32,14 +32,9 @@ bin/console doctrine:database:create
 bin/console doctrine:schema:create
 symfony server:start
 ```
-#### 2. Run tests
+#### 2. Run coding standard
 
-**a)** PHPSpec
-```bash
-vendor/bin/phpspec run
-```
-
-**b)** Coding Standard
+Coding Standard
 
 ```bash
 vendor/bin/ecs check src
