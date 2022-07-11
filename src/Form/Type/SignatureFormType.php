@@ -21,12 +21,12 @@ final class SignatureFormType extends AbstractType
             ->add('name', TextType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Please enter name',
                     ]),
                 ], ])->add('surname', TextType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Please enter surname',
                     ]),
                 ], ])
             ->add('attachment', FileType::class, [
